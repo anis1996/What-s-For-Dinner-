@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
 
         <ImageButton
@@ -18,28 +18,75 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.50"
+            android:background="@color/colorPrimary"
 
-           
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher_foreground"
-            android:background="@color/colorPrimaryDark"
-            />
+            android:src="@mipmap/wfd_pic_icon" />
 
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-            android:layout_weight="0.50"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
             >
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="whats up"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/mealButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:drawableTop="@mipmap/meals_icon"
+                    android:text="Meals" />
+
+                <Button
+                    android:id="@+id/recipesButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:drawableTop="@mipmap/recipes_icon"
+                    android:text="recipes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:id="@+id/groceriesButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:drawableTop="@mipmap/groceries_icon"
+                    android:text="groceries" />
+
+                <Button
+                    android:id="@+id/NewDishButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:drawableTop="@mipmap/new_icon"
+                    android:text="new Dish" />
 
 
-         </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
