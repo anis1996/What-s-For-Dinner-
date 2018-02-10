@@ -23,4 +23,24 @@ public class MainScreen extends AppCompatActivity {
             }
         });
     }
+
+    public void startMealsPage(View view) {
+        Intent intent = new Intent(this, MealsPage.class);
+        startActivity(intent);
+    }
+
+    public void startRecipes(View view) {
+        Intent intent = new Intent(this, RecipesList.class);
+        startActivity(intent);
+    }
+
+    public void startGroceries(View view) {
+        Intent intent = new Intent(this, GroceriesPage.class);
+        startActivity(intent);
+    }
+
+    public void startNewDish(View view) {
+        Intent intent = new Intent(this, NewDishPage.class);
+        startActivity(intent);
+    }
 }

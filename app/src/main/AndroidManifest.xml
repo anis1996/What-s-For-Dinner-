@@ -16,10 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pop"
-            android:theme="@style/AppTheme.CustomTheme"
-            >
-        </activity>
+        <activity
+            android:name=".pop"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name=".MealsPage" />
+        <activity android:name=".NewDishPage" />
+        <activity android:name=".GroceriesPage" />
+        <activity android:name=".RecipesList"></activity>
     </application>
 
 </manifest>

@@ -21,8 +21,8 @@ public class pop extends Activity{
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        int width = (int) (dm.widthPixels * 0.6);
-        int height = (int) (dm.heightPixels * 0.4);
+        int width = (int) (dm.widthPixels * 0.7);
+        int height = (int) (dm.heightPixels * 0.30);
 
         getWindow().setLayout(width ,height );
     }

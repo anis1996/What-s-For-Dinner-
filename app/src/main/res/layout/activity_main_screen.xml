@@ -19,7 +19,6 @@
             android:layout_height="match_parent"
             android:layout_weight="0.50"
             android:background="@color/colorPrimary"
-
             android:scaleType="centerCrop"
             android:src="@mipmap/wfd_pic_icon" />
 
@@ -39,15 +38,20 @@
 
                 <Button
                     android:id="@+id/mealButton"
+                    android:onClick="startMealsPage"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@android:color/white"
                     android:drawableTop="@mipmap/meals_icon"
-                    android:text="Meals" />
+                    android:text="Meals"
+
+
+                    />
 
                 <Button
                     android:id="@+id/recipesButton"
+                    android:onClick="startRecipes"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -66,6 +70,7 @@
 
                 <Button
                     android:id="@+id/groceriesButton"
+                    android:onClick="startGroceries"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -75,6 +80,7 @@
 
                 <Button
                     android:id="@+id/NewDishButton"
+                    android:onClick="startNewDish"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
