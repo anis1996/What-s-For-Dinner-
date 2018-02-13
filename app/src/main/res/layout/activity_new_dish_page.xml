@@ -11,6 +11,7 @@
         android:id="@+id/newDishRelativeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -22,13 +23,31 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#efeff2"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
         <LinearLayout
             android:id="@+id/recipeNameLinearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#ffffff"
+            android:layout_margin="8dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="15dp"
+                android:ems="10"
+                android:textAllCaps="true"
+                />
 
             <EditText
                 android:id="@+id/recipeNameET"
@@ -37,113 +56,55 @@
                 android:ems="10"
                 android:inputType="textShortMessage"
                 android:hint="Enter Recipe Name"
-                tools:ignore="HardcodedText" />
+               />
 
-            <LinearLayout
-                android:id="@+id/addImageLinearLayout"
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#ffffff"
+            android:layout_margin="8dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PICTURE OF RECIPE"
+                android:textSize="15dp"
+                android:ems="10"
+                android:textAllCaps="true"
+                />
+
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <ImageView
-                    android:id="@+id/userImageView"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.50"
-
-                    tools:ignore="ContentDescription" />
-
-                <ImageButton
-                    android:id="@+id/addNewImageButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.50"
+                android:src="@mipmap/d_dish_icon"
+                android:scaleType="centerInside" />
 
 
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:weightSum="1">
-
-                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:id="@+id/ingredientsLinearLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:weightSum="1">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.50"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/ingredientsTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Ingredients (Up to 10 ingredients)"
-                                tools:ignore="HardcodedText" />
-
-                            <Button
-                                android:id="@+id/ingredientsButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Add Ingredient" />
+                android:background="#ffffff"
+                android:layout_margin="8dp"
+                >
 
 
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </ScrollView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/directionsTV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cooking Directions (please type)"
-                        tools:ignore="HardcodedText" />
-
-                    <EditText
-                        android:id="@+id/directionsText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="250"
-                        android:hint="Type your cooking directions here"
-                        tools:ignore="HardcodedText" />
-                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/submitRecipeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Submit New dish!" />
-            </LinearLayout>
 
-        </LinearLayout></ScrollView>
+
+
+
+        </LinearLayout>
+       </ScrollView>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
