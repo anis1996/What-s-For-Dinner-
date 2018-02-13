@@ -23,26 +23,26 @@ public class Recipe {
         return recipeName;
     }
 
+    public void setRecipeName(String name) {
+        this.recipeName = name;
+    }
     public ArrayList<String> getIngredients() {
         return ingredients;
+    }
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public Drawable getImage() {
         return image;
     }
 
-    public String getDirection() { return direction; }
-
-    public void setRecipeNameName(String name) {
-        this.recipeName = name;
-    }
-
-    public void setIngred(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public void setImage(Drawable image) {
         this.image = image;
+    }
+
+    public String getDirection() {
+        return direction;
     }
 
     public void setDirection(String direction) {
