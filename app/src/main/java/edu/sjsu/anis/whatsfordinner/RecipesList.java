@@ -19,6 +19,19 @@ public class RecipesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_list);
 
+        Configuration config = getResources().getConfiguration();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LandscapeFragment landscapeFragment = new LandscapeFragment();
+            fragmentTransaction.replace(android.R.id.content,landscapeFragment);
+        } else {
+            PortraitFragment portraitFragment = new PortraitFragment();
+            fragmentTransaction.replace(android.R.id.content, portraitFragment);
+        }
+        fragmentTransaction.commit();
 
 
        

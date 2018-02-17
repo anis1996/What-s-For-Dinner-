@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class RecipeData {
     private static final RecipeData singleton = new RecipeData();
     private ArrayList<Recipe> recipes = new ArrayList<>();
-
+    private ArrayList<String> recipeNames = new ArrayList<>();
 
 
     static RecipeData getSingleton()
@@ -19,6 +19,7 @@ public class RecipeData {
 
     public void addRecipe(Recipe re) {
         recipes.add(re);
+        recipeNames.add(re.getRecipeName());
     }
 
 
@@ -29,6 +30,10 @@ public class RecipeData {
         if (recipes.contains(r)) {
             recipes.remove(r);
         }
+    }
+    public ArrayList<String> getRecipeNames()
+    {
+        return recipeNames;
     }
 
 
