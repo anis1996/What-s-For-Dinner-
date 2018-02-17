@@ -1,4 +1,5 @@
 package edu.sjsu.anis.whatsfordinner;
+import java.io.Serializable;
 import java.util.ArrayList;
 import android.graphics.drawable.Drawable;
 
@@ -6,16 +7,15 @@ import android.graphics.drawable.Drawable;
  * Created by anisdhapa on 2/13/18.
  */
 
-public class Recipe {
+public class Recipe implements Serializable{
     private Drawable image;
     private String recipeName;
     private ArrayList<String> ingredients;
     private String direction;
 
-    public Recipe(String name, ArrayList<String> ingredients, String directions, Drawable img) {
+    public Recipe(String name, ArrayList<String> ingredients, String directions) {
         this.recipeName = name;
         this.ingredients = ingredients;
-        this.image= img;
         this.direction = directions;
     }
 

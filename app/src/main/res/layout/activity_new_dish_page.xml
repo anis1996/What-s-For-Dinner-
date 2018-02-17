@@ -93,11 +93,100 @@
                 android:background="#ffffff"
                 android:layout_margin="8dp"
                 >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ingredients (up to 10)"
+                    android:textSize="15dp"
+                    android:ems="10"
+                    android:textAllCaps="true"
+                    />
 
+                <AutoCompleteTextView
+                    android:id="@+id/ing1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+                <AutoCompleteTextView
+                    android:id="@+id/ing2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/ing10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#ffffff"
+                android:layout_margin="8dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Directions (max 250 words)"
+                    android:textSize="15dp"
+                    android:ems="10"
+                    android:textAllCaps="true"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/directionEdit"
+                    android:maxLength="250"
+                    android:inputType="textLongMessage"/>
 
 
             </LinearLayout>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addbutton"
+                android:onClick="saveRecipe"
+                android:text="Save"
+                />
 
 
 
