@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-
     android:orientation="horizontal">
 
     <fragment
@@ -10,6 +9,7 @@
         android:id="@+id/portait"
         android:layout_weight="1"
         android:layout_width="0dp"
+        class="edu.sjsu.anis.whatsfordinner.ListFragment"
         android:layout_height="match_parent"
         tools:layout="@layout/list_fragment"/>
 
@@ -17,7 +17,10 @@
 
         android:id="@+id/informationLand"
         android:layout_weight="2"
+        class="edu.sjsu.anis.whatsfordinner.InformationFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         tools:layout="@layout/information_fragment"/>
+
+
 </LinearLayout>

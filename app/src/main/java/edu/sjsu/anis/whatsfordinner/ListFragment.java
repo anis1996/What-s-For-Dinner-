@@ -13,11 +13,11 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PortraitFragment extends Fragment {
+public class ListFragment extends Fragment {
 
     ListView listview;
 
-    public PortraitFragment() {
+    public ListFragment() {
         // Required empty public constructor
     }
 
@@ -29,7 +29,7 @@ public class PortraitFragment extends Fragment {
 
 
 
-        View view = inflater.inflate(R.layout.fragment_portrait, container, false);
+        View view = inflater.inflate(R.layout.list_fragment, container, false);
 
         listview = (ListView) view.findViewById(R.id.recipelist);
         ArrayAdapter adapter= new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_list_item_activated_1, RecipeData.getSingleton().getRecipeNames());
