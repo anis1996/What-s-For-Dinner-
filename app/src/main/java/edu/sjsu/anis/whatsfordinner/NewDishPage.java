@@ -1,12 +1,17 @@
 package edu.sjsu.anis.whatsfordinner;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +24,9 @@ public class NewDishPage extends AppCompatActivity {
     RecipeData data;
 
 
+    String recName;
     Recipe recipe;
+    boolean hasRecipe = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,7 @@ public class NewDishPage extends AppCompatActivity {
         setContentView(R.layout.activity_new_dish_page);
 
         texts = new ArrayList<>();
+
 
         AutoCompleteTextView firstACTV = (AutoCompleteTextView) findViewById(R.id.ing1);
         texts.add(firstACTV);
@@ -49,13 +57,31 @@ public class NewDishPage extends AppCompatActivity {
         AutoCompleteTextView tenACTV = (AutoCompleteTextView) findViewById(R.id.ing10);
         texts.add(tenACTV);
 
+        ImageView imageViewPick = (ImageView) findViewById(R.id.imagePick);
+        imageViewPick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                photoPickerIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true); // this is the flag that does the trick
+                startActivityForResult(photoPickerIntent, 1);
+
+
+// this goes in onActivityResult(int requestCode, int resultCode, Intent data)
+
+            }
+        });
 
 
 
         for (AutoCompleteTextView actv : texts)
         {
-           // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, drop);
-           // actv.setAdapter(adapter);
+
+            data = RecipeData.getSingleton();
+            if(data.getIngredients().size() != 0) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, data.getIngreds());
+                actv.setAdapter(adapter);
+            }
             actv.setThreshold(0);
 
         }
@@ -64,12 +90,24 @@ public class NewDishPage extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent f)
+    {
+
+        if(resultCode == Activity.RESULT_OK){
+            Uri imageUri = f.getData();
+            ImageView userImage = (ImageView) findViewById(R.id.imagePick);
+            userImage.setImageURI(imageUri);
+            // do stuff with the imageUri
+        }
+    }
+
 
 
     public void saveRecipe(View view) {
         ArrayList<String> ingrid = new ArrayList<>();
 
-        String recName = ((EditText)findViewById(R.id.recipeNameET)).getText().toString();
+         recName = ((EditText)findViewById(R.id.recipeNameET)).getText().toString();
         for (AutoCompleteTextView actv : texts)
         {
                 ingrid.add(actv.getText().toString());
@@ -78,11 +116,25 @@ public class NewDishPage extends AppCompatActivity {
         String dir = ((EditText) findViewById(R.id.directionEdit)).getText().toString();
         recipe = new Recipe(recName,ingrid,dir);
 
-        data = RecipeData.getSingleton();
-        data.addRecipe(recipe);
+        // check if recipe is already exit in data
+        for (String r : data.getSingleton().getRecipeNames()) {
+            if (r.equalsIgnoreCase(recName)) {
+                hasRecipe = true;
+            }
+        }
 
-        Intent intent = new Intent(this,MainScreen.class);
-        startActivity(intent);
+        if(!hasRecipe) {
+            data = RecipeData.getSingleton();
+            data.addRecipe(recipe);
+            Toast.makeText(NewDishPage.this, "Recipe Saved", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, MainScreen.class);
+            startActivity(intent);
+        }else
+        {
+            Toast deny = Toast.makeText(NewDishPage.this, "Recipe name already exists, please enter a new one", Toast.LENGTH_LONG);
+            deny.show();
+            hasRecipe = false;
+        }
 
 
     }
