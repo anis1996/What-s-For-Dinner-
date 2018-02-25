@@ -22,7 +22,7 @@ public class NewDishPage extends AppCompatActivity {
     ArrayList<AutoCompleteTextView> texts ;
 
     RecipeData data;
-
+    ImageView userImage;
 
     String recName;
     Recipe recipe;
@@ -35,7 +35,9 @@ public class NewDishPage extends AppCompatActivity {
 
         texts = new ArrayList<>();
 
+        data = RecipeData.getSingleton();
 
+        EditText editRecipe = (EditText) findViewById(R.id.recipeNameET) ;
         AutoCompleteTextView firstACTV = (AutoCompleteTextView) findViewById(R.id.ing1);
         texts.add(firstACTV);
         AutoCompleteTextView secondACTV = (AutoCompleteTextView) findViewById(R.id.ing2);
@@ -57,8 +59,9 @@ public class NewDishPage extends AppCompatActivity {
         AutoCompleteTextView tenACTV = (AutoCompleteTextView) findViewById(R.id.ing10);
         texts.add(tenACTV);
 
-        ImageView imageViewPick = (ImageView) findViewById(R.id.imagePick);
-        imageViewPick.setOnClickListener(new View.OnClickListener() {
+        EditText editDes = (EditText) findViewById(R.id.directionEdit);
+        userImage = (ImageView) findViewById(R.id.imagePick);
+        userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -67,22 +70,34 @@ public class NewDishPage extends AppCompatActivity {
                 startActivityForResult(photoPickerIntent, 1);
 
 
-// this goes in onActivityResult(int requestCode, int resultCode, Intent data)
-
             }
         });
 
 
 
+        if(getIntent().hasExtra("information"))
+        {
+            recipe = data.getRecipeFromName(getIntent().getStringExtra("information"));
+            editRecipe.setText(recipe.getRecipeName());
+            editDes.setText(recipe.getDirection());
+            userImage.setImageDrawable(recipe.getImage());
+            for(int i = 0;i < recipe.getIngredients().size(); i++)
+            {
+                texts.get(i).setText(recipe.getIngredients().get(i));
+            }
+
+        }
         for (AutoCompleteTextView actv : texts)
         {
 
-            data = RecipeData.getSingleton();
+
             if(data.getIngredients().size() != 0) {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, data.getIngreds());
                 actv.setAdapter(adapter);
+                actv.setThreshold(0);
             }
-            actv.setThreshold(0);
+
+
 
         }
        // second.setAdapter(new SearchSuggestionsAdapter(this, second.getText().toString()));
@@ -96,7 +111,7 @@ public class NewDishPage extends AppCompatActivity {
 
         if(resultCode == Activity.RESULT_OK){
             Uri imageUri = f.getData();
-            ImageView userImage = (ImageView) findViewById(R.id.imagePick);
+            userImage = (ImageView) findViewById(R.id.imagePick);
             userImage.setImageURI(imageUri);
             // do stuff with the imageUri
         }
@@ -105,8 +120,12 @@ public class NewDishPage extends AppCompatActivity {
 
 
     public void saveRecipe(View view) {
-        ArrayList<String> ingrid = new ArrayList<>();
 
+        ArrayList<String> ingrid = new ArrayList<>();
+        if(getIntent().hasExtra("information"))
+        {
+            data.deletRecipe(recipe);
+        }
          recName = ((EditText)findViewById(R.id.recipeNameET)).getText().toString();
         for (AutoCompleteTextView actv : texts)
         {
@@ -116,12 +135,17 @@ public class NewDishPage extends AppCompatActivity {
         String dir = ((EditText) findViewById(R.id.directionEdit)).getText().toString();
         recipe = new Recipe(recName,ingrid,dir);
 
+        recipe.setImage(userImage.getDrawable());
+
         // check if recipe is already exit in data
         for (String r : data.getSingleton().getRecipeNames()) {
             if (r.equalsIgnoreCase(recName)) {
                 hasRecipe = true;
             }
         }
+
+
+
 
         if(!hasRecipe) {
             data = RecipeData.getSingleton();

@@ -12,7 +12,7 @@ public class RecipeData {
     private ArrayList<Recipe> recipes = new ArrayList<>();
     private ArrayList<String> recipeNames = new ArrayList<>();
     private HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
-
+    private ArrayList<String> mealsString = new ArrayList<String>();
 
 
     static RecipeData getSingleton()
@@ -20,13 +20,38 @@ public class RecipeData {
         return singleton;
     }
 
+    private RecipeData()
+    {
+        mealsString.add("Eating Outside");
+    }
+
+
     public void addRecipe(Recipe re) {
         recipes.add(re);
         recipeNames.add(re.getRecipeName());
         addIngredients(re.getIngredients());
     }
 
+    public void deletRecipe(Recipe r)
+    {
+        recipes.remove(r);
+        recipeNames.remove(r.getRecipeName());
 
+    }
+
+
+    public Recipe getRecipeFromName(String s)
+    {
+        for(Recipe r: recipes)
+        {
+            if(r.getRecipeName().equals(s))
+            {
+                return r;
+            }
+        }
+
+        return null;
+    }
 
 
     public ArrayList<Recipe> getRecipeList() {
@@ -90,6 +115,21 @@ public class RecipeData {
         return ingreds;
     }
 
+    public void addtoMeals(Recipe r)
+    {
+        mealsString.add(r.getRecipeName());
+    }
+
+    public void deleteFromMeals(String meal)
+    {
+        mealsString.remove(meal);
+    }
+
+
+    public ArrayList<String> getMeals()
+    {
+        return mealsString;
+    }
 
 
 }

@@ -2,6 +2,7 @@ package edu.sjsu.anis.whatsfordinner;
 import java.io.Serializable;
 import java.util.ArrayList;
 import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
 
 /**
  * Created by anisdhapa on 2/13/18.
