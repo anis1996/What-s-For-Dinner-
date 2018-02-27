@@ -1,6 +1,8 @@
 package edu.sjsu.anis.whatsfordinner;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
@@ -13,16 +15,28 @@ public class Recipe implements Serializable{
     private String recipeName;
     private ArrayList<String> ingredients;
     private String direction;
+    private HashMap<String, Integer> nutrition ;
 
     public Recipe(String name, ArrayList<String> ingredients, String directions) {
         this.recipeName = name;
         this.ingredients = ingredients;
         this.direction = directions;
+        nutrition = new HashMap<>();
     }
 
     public String getRecipeName() {
         return recipeName;
     }
+    public void setNutrition(HashMap<String,Integer> n)
+    {
+        nutrition = n;
+    }
+
+    public HashMap<String, Integer> getNutrition()
+    {
+        return nutrition;
+    }
+
 
     public void setRecipeName(String name) {
         this.recipeName = name;

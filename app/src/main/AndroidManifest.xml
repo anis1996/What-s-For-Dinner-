@@ -22,7 +22,8 @@
         <activity android:name=".MealsPage" />
         <activity android:name=".NewDishPage" />
         <activity android:name=".GroceriesPage" />
-        <activity android:name=".RecipesList"></activity>
+        <activity android:name=".RecipesList" />
+        <activity android:name=".Nutrition"></activity>
     </application>
 
 </manifest>

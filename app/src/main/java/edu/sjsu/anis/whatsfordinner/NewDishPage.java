@@ -129,7 +129,9 @@ public class NewDishPage extends AppCompatActivity {
          recName = ((EditText)findViewById(R.id.recipeNameET)).getText().toString();
         for (AutoCompleteTextView actv : texts)
         {
-                ingrid.add(actv.getText().toString());
+                if(!actv.getText().toString().isEmpty()) {
+                    ingrid.add(actv.getText().toString());
+                }
         }
 
         String dir = ((EditText) findViewById(R.id.directionEdit)).getText().toString();

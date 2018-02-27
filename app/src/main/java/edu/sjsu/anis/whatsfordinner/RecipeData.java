@@ -13,12 +13,13 @@ public class RecipeData {
     private ArrayList<String> recipeNames = new ArrayList<>();
     private HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
     private ArrayList<String> mealsString = new ArrayList<String>();
-
+    private HashMap<String, Integer>  goalNutrition = new HashMap<>();
 
     static RecipeData getSingleton()
     {
         return singleton;
     }
+
 
     private RecipeData()
     {
@@ -108,12 +109,41 @@ public class RecipeData {
     public ArrayList<String> getIngreds() {
         ArrayList<String> ingreds = new ArrayList<String>();
         for (String s : ingredients.keySet()) {
-            if (ingredients.get(s) > 0) {
-                ingreds.add(s);
+            if (ingredients.get(s) >=  1) {
+                ingreds.add(s );
+            }
+        }
+
+        return ingreds;
+    }
+
+    public void setGoalNutrition(HashMap<String,Integer> g)
+    {
+        goalNutrition = g;
+    }
+
+    public HashMap<String,Integer> getGoalNutrition()
+    {
+        return goalNutrition;
+    }
+
+
+
+
+    public ArrayList<String> displayIngri() {
+        ArrayList<String> ingreds = new ArrayList<String>();
+        for (String s : ingredients.keySet()) {
+            if (ingredients.get(s) >=  1) {
+                ingreds.add(s );
             }
         }
         return ingreds;
     }
+//   public ArrayList<String> displayItemInGroce()
+//   {
+//        ArrayList<String> listWithItemNumber = new ArrayList<>();
+//        for(String s :)
+//   }
 
     public void addtoMeals(Recipe r)
     {
