@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MealsPage extends AppCompatActivity {
 
@@ -51,6 +53,19 @@ public class MealsPage extends AppCompatActivity {
                         String meal = (String) spi.getSelectedItem();
                         if (!meal.equalsIgnoreCase("Eating outside")) {
                             RecipeData.getSingleton().deleteFromMeals(meal);
+
+                            Recipe r = RecipeData.getSingleton().getRecipeFromName(meal);
+                            HashMap<String,Integer> recipeNutrition = r.getNutrition();
+                            HashMap<String,Integer> nutritionGoal = RecipeData.getSingleton().getGoalNutrition();
+                            String Calories = "Calories(Goal) " + nutritionGoal.get("Calories") ;
+
+                            String RecipeCalories = ""+recipeNutrition.get("Calories");
+                            Calories = Calories + RecipeCalories;
+                            TextView detail = (TextView) findViewById(R.id.detailsofNutrition);
+                            detail.setText(Calories);
+
+
+
                         }
                     }
 
