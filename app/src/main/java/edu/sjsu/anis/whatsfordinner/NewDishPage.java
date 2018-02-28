@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class NewDishPage extends AppCompatActivity {
@@ -146,7 +147,26 @@ public class NewDishPage extends AppCompatActivity {
             }
         }
 
-
+//        HashMap<String, Integer> nutrition = new HashMap<>();
+//
+//        Integer caloriesInt = Integer.parseInt((((EditText) findViewById(R.id.caloriesEditND)).getText().toString()));
+//        nutrition.put("Calories",caloriesInt);
+//        Integer carbohydratesInt = Integer.parseInt((((EditText) findViewById(R.id.carbohydratesEditND)).getText().toString()));
+//        nutrition.put("Carbohydrates",carbohydratesInt);
+//        Integer mineralsInt = Integer.parseInt((((EditText) findViewById(R.id.mineralsEditND)).getText().toString()));
+//        nutrition.put("Minerals",caloriesInt);
+//        Integer vitaminsInt = Integer.parseInt((((EditText) findViewById(R.id.vitaminsEditND)).getText().toString()));
+//        nutrition.put("Vitamins",vitaminsInt);
+//        Integer fatsInt = Integer.parseInt((((EditText) findViewById(R.id.fatsEditND)).getText().toString()));
+//        nutrition.put("Fats",fatsInt);
+//        Integer sugarsInt = Integer.parseInt((((EditText) findViewById(R.id.sugarsEditND)).getText().toString()));
+//        nutrition.put("Sugars",sugarsInt);
+//        Integer sodiumInt = Integer.parseInt((((EditText) findViewById(R.id.sodiumEditND)).getText().toString()));
+//        nutrition.put("Sodium",sodiumInt);
+//        Integer proteinInt = Integer.parseInt((((EditText) findViewById(R.id.proteinEditND)).getText().toString()));
+//        nutrition.put("Protein",proteinInt);
+//
+//        recipe.setNutrition(nutrition);
 
 
         if(!hasRecipe) {
