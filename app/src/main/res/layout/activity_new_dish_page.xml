@@ -102,12 +102,25 @@
                     android:ems="10"
                     android:textAllCaps="true"
                     />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                 <AutoCompleteTextView
                     android:id="@+id/ing1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
                     />
+                    <Spinner
+                        android:layout_width="0dp"
+                        android:id="@+id/ing1Spinner"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        ></Spinner>
+                </LinearLayout>
 
                 <AutoCompleteTextView
                     android:id="@+id/ing2"

@@ -15,6 +15,7 @@ public class RecipeData {
     private ArrayList<String> mealsString = new ArrayList<String>();
     private HashMap<String, Integer>  goalNutrition = new HashMap<>();
 
+
     static RecipeData getSingleton()
     {
         return singleton;
@@ -82,12 +83,17 @@ public class RecipeData {
 
     }
 
+
+
+
     public void addIngredients(ArrayList<String> ss) {
         for (String s : ss) {
             s = s.toLowerCase();
             addIngredients(s);
         }
     }
+
+
 
     public void removeIngredients(String ing) {
         ing = ing.toLowerCase();

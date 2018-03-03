@@ -3,7 +3,9 @@ package edu.sjsu.anis.whatsfordinner;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -13,6 +15,14 @@ import java.util.HashMap;
 
 public class MealsPage extends AppCompatActivity {
 
+    int totalCalories = 0;
+    int totalCarbohydrates = 0;
+    int totalMinerals = 0;
+    int totalVitamins =  0;
+    int totalFats = 0;
+    int totalSugars =0;
+    int totalSodium = 0;
+    int totalProtein=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,34 +55,158 @@ public class MealsPage extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, RecipeData.getSingleton().getMeals());
 
         for (final Spinner spi : mealSpinner) {
-            //issue : have to double click on spinner in order to open list
-            spi.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onFocusChange(View view, boolean b) {
-                    if (!b) {
-                        String meal = (String) spi.getSelectedItem();
-                        if (!meal.equalsIgnoreCase("Eating outside")) {
-                            RecipeData.getSingleton().deleteFromMeals(meal);
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // your code here
 
-                            Recipe r = RecipeData.getSingleton().getRecipeFromName(meal);
-                            HashMap<String,Integer> recipeNutrition = r.getNutrition();
-                            HashMap<String,Integer> nutritionGoal = RecipeData.getSingleton().getGoalNutrition();
-                            String Calories = "Calories(Goal) " + nutritionGoal.get("Calories") ;
+                   String meal = (String) parentView.getItemAtPosition(position);
+                    Recipe r = RecipeData.getSingleton().getRecipeFromName(meal);
 
-                            String RecipeCalories = ""+recipeNutrition.get("Calories");
-                            Calories = Calories + RecipeCalories;
-                            TextView detail = (TextView) findViewById(R.id.detailsofNutrition);
-                            detail.setText(Calories);
+                    String finalShowingStirng = "";
 
+                    if(r != null) {
 
+                        HashMap<String, Integer> recipeNutrition = r.getNutrition();
+                        HashMap<String, Integer> nutritionGoal = RecipeData.getSingleton().getGoalNutrition();
 
+                        //Calories
+                        String Calories = "Calories(Goal: " + nutritionGoal.get("Calories") + ") ";
+                        String RecipeCalories = "" + (recipeNutrition.get("Calories")+totalCalories);
+                        Log.d(RecipeCalories, "onFocusChange: ");
+                        Calories = Calories + RecipeCalories;
+                        if ((recipeNutrition.get("Calories") + totalCalories) > nutritionGoal.get("Calories")) {
+                            Calories = Calories + " GOAL IS MET";
                         }
-                    }
+                        finalShowingStirng += Calories + "\n";
+                        totalCalories = totalCalories + recipeNutrition.get("Calories");
+                        //Carbohydrates
+                        String Carbohydrates= "Carbohydrates(Goal: " + nutritionGoal.get("Carbohydrates") + ") ";
+                        String RecipeCarbohydrates = "" + (recipeNutrition.get("Carbohydrates")+totalCarbohydrates);
+                        Carbohydrates = Carbohydrates + RecipeCarbohydrates;
+                        if ((recipeNutrition.get("Carbohydrates") + totalCarbohydrates) > nutritionGoal.get("Carbohydrates")) {
+                            Carbohydrates = Carbohydrates + " GOAL IS MET";
+                        }
+                        finalShowingStirng += Carbohydrates + "\n";
+                        totalCarbohydrates = totalCarbohydrates + recipeNutrition.get("Carbohydrates");
+                        //Minerals
+                        String Minerals= "Minerals(Goal: " + nutritionGoal.get("Minerals") + ") ";
+                        String RecipeMinerals = "" + (recipeNutrition.get("Minerals")+totalMinerals);
+                        Minerals = Minerals + RecipeMinerals;
+                        if ((recipeNutrition.get("Minerals") + totalMinerals) > nutritionGoal.get("Minerals")) {
+                            Minerals = Minerals + " GOAL IS MET";
+                        }
+                        finalShowingStirng += Minerals + "\n";
+                        totalMinerals = totalMinerals + recipeNutrition.get("Minerals");
 
+                        //Vitamins
+                        String Vitamins= "Vitamins(Goal: " + nutritionGoal.get("Vitamins") + ") ";
+                        String RecipeVitamins = "" + (recipeNutrition.get("Vitamins")+totalVitamins);
+                        Vitamins = Vitamins+ RecipeVitamins;
+                        if ((recipeNutrition.get("Vitamins") + totalVitamins > nutritionGoal.get("Vitamins"))) {
+                            Vitamins = Vitamins+ " GOAL IS MET";
+                        }
+                        finalShowingStirng += Vitamins+ "\n";
+                        totalVitamins = totalVitamins + recipeNutrition.get("Vitamins");
+
+                        //Fats
+                        String Fats= "Fats(Goal: " + nutritionGoal.get("Fats") + ") ";
+                        String RecipeFats= "" + (recipeNutrition.get("Fats")+totalFats);
+                        Fats = Fats+ RecipeFats;
+                        if ((recipeNutrition.get("Fats") + totalFats > nutritionGoal.get("Fats"))) {
+                            Fats = Fats + " GOAL IS MET";
+                        }
+                        finalShowingStirng += Fats+ "\n";
+                        totalFats = totalFats + recipeNutrition.get("Fats");
+
+                        //Sugars
+                        String Sugars= "Sugars(Goal: " + nutritionGoal.get("Sugars") + ") ";
+                        String RecipeSugars= "" + (recipeNutrition.get("Sugars")+totalSugars);
+                        Sugars = Sugars + RecipeSugars;
+                        if ((recipeNutrition.get("Sugars") + totalSugars > nutritionGoal.get("Sugars"))) {
+                            Sugars = Sugars + " GOAL IS MET";
+                        }
+                        finalShowingStirng += Sugars+ "\n";
+                        totalSugars = totalSugars + recipeNutrition.get("Sugars");
+
+                        //Sodium
+                        String Sodium= "Sodium(Goal: " + nutritionGoal.get("Sodium") + ") ";
+                        String RecipeSodium = "" + (recipeNutrition.get("Sodium")+totalSodium);
+                        Sodium = Sodium + RecipeSodium;
+                        if ((recipeNutrition.get("Sodium") + totalSodium > nutritionGoal.get("Sodium"))) {
+                            Sodium = Sodium + " GOAL IS MET";
+                        }
+                        finalShowingStirng += Sodium+ "\n";
+                        totalSodium = totalSodium + recipeNutrition.get("Sodium");
+
+                        //Protein
+                        String Protein= "Protein(Goal: " + nutritionGoal.get("Protein") + ") ";
+                        String RecipeProtein = "" + (recipeNutrition.get("Protein")+totalProtein);
+                        Protein = Protein + RecipeProtein;
+                        if ((recipeNutrition.get("Protein") + totalProtein > nutritionGoal.get("Protein"))) {
+                            Protein = Protein + " GOAL IS MET";
+                        }
+                        finalShowingStirng += Protein+ "\n";
+                        totalProtein = totalProtein + recipeNutrition.get("Protein");
+
+
+                        TextView detail = (TextView) findViewById(R.id.detailsofNutrition);
+                        detail.setText(finalShowingStirng);
+                    }
+                    if (!meal.equalsIgnoreCase("Eating outside")) {
+
+                        RecipeData.getSingleton().deleteFromMeals(meal);
+
+
+
+                    }
                 }
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // your code here
+                }
+
             });
 
+//                //issue : have to double click on spinner in order to open list
+//            spi.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//                @Override
+//                public void onFocusChange(View view, boolean b) {
+//                    if (!b) {
+//                        String meal = (String) spi.getSelectedItem();
+//                        Recipe r = RecipeData.getSingleton().getRecipeFromName(meal);
+//
+//
+//
+//                        HashMap<String, Integer> recipeNutrition = r.getNutrition();
+//                        HashMap<String, Integer> nutritionGoal = RecipeData.getSingleton().getGoalNutrition();
+//                        String Calories = "Calories(Goal: " + nutritionGoal.get("Calories") + ") ";
+//
+//                        String RecipeCalories = "" + recipeNutrition.get("Calories");
+//                        Log.d(RecipeCalories, "onFocusChange: ");
+//                        Calories = Calories + RecipeCalories;
+//                        if (recipeNutrition.get("Calories") > nutritionGoal.get("Calories")) {
+//                            Calories = Calories + " GOAL IS MET";
+//                        }
+//                        Calories += "\n";
+//
+//                        TextView detail = (TextView) findViewById(R.id.detailsofNutrition);
+//                        detail.setText(Calories);
+//                        if (!meal.equalsIgnoreCase("Eating outside")) {
+//
+//                            RecipeData.getSingleton().deleteFromMeals(meal);
+//
+//
+//
+//                    }
+//                    }
+//
+//                }
+//            });
+
             spi.setAdapter(arrayAdapter);
+
 
 
             spi.setSelection(0);

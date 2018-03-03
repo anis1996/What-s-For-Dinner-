@@ -28,7 +28,7 @@ public class Nutrition extends AppCompatActivity {
         Integer carbohydratesInt = Integer.parseInt((((EditText) findViewById(R.id.carbohydratesEdit)).getText().toString()));
         nutrition.put("Carbohydrates",carbohydratesInt);
         Integer mineralsInt = Integer.parseInt((((EditText) findViewById(R.id.mineralsEdit)).getText().toString()));
-        nutrition.put("Minerals",caloriesInt);
+        nutrition.put("Minerals",mineralsInt);
         Integer vitaminsInt = Integer.parseInt((((EditText) findViewById(R.id.vitaminsEdit)).getText().toString()));
         nutrition.put("Vitamins",vitaminsInt);
         Integer fatsInt = Integer.parseInt((((EditText) findViewById(R.id.fatsEdit)).getText().toString()));

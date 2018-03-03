@@ -137,6 +137,11 @@ public class NewDishPage extends AppCompatActivity {
 
         String dir = ((EditText) findViewById(R.id.directionEdit)).getText().toString();
         recipe = new Recipe(recName,ingrid,dir);
+        for (AutoCompleteTextView actv : texts)
+        {
+          //  recipe.addIngriWithUnit(actv.getText().toString(), );
+        }
+
 
         recipe.setImage(userImage.getDrawable());
 
