@@ -14,7 +14,7 @@ public class RecipeData {
     private HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
     private ArrayList<String> mealsString = new ArrayList<String>();
     private HashMap<String, Integer>  goalNutrition = new HashMap<>();
-
+    private HashMap<String,String> ingriUnits = new HashMap<>();
 
     static RecipeData getSingleton()
     {
@@ -133,6 +133,15 @@ public class RecipeData {
         return goalNutrition;
     }
 
+    public void addIngriWithUnit(String in, String unit)
+    {
+        ingriUnits.put(in,unit);
+    }
+
+    public void getUnitOfThisIngri(String s)
+    {
+        ingriUnits.get(s);
+    }
 
 
 
@@ -140,7 +149,7 @@ public class RecipeData {
         ArrayList<String> ingreds = new ArrayList<String>();
         for (String s : ingredients.keySet()) {
             if (ingredients.get(s) >=  1) {
-                ingreds.add(s );
+                ingreds.add(s + "-"+ingredients.get(s)+"(" + ingriUnits.get(s) + ")");
             }
         }
         return ingreds;

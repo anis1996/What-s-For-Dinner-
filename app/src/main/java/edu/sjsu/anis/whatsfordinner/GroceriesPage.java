@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -88,15 +90,22 @@ public class GroceriesPage extends AppCompatActivity {
                 switch (index) {
                     case 0:
                         // open
-                        RecipeData.getSingleton().removeIngredients(item);
-                        adapter.notifyDataSetChanged();
+                        RecipeData.getSingleton().removeIngredients(item.substring(0,item.indexOf("-")));
+
+                        adapter = new ArrayAdapter<String>(GroceriesPage.this, android.R.layout.simple_list_item_1, RecipeData.getSingleton().displayIngri());
+                        listView.setAdapter(adapter);
+
+
 
 //                        Log.d(item.substring(0,item.indexOf("-")-1), "onMenuItemClick: ");
 //                        Log.d(RecipeData.getSingleton().displayIngri().get(0), "onMenuItemClick: ");
                         break;
                     case 1:
                         // delete
-                        RecipeData.getSingleton().addIngredients(item);
+                        RecipeData.getSingleton().addIngredients(item.substring(0,item.indexOf("-")));
+
+                        adapter = new ArrayAdapter<String>(GroceriesPage.this, android.R.layout.simple_list_item_1, RecipeData.getSingleton().displayIngri());
+                        listView.setAdapter(adapter);
                         break;
                 }
                 // false : close the menu; true : not close the menu

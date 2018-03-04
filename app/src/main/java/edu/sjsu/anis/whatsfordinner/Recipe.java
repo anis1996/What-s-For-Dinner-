@@ -16,7 +16,7 @@ public class Recipe implements Serializable{
     private ArrayList<String> ingredients;
     private String direction;
     private HashMap<String, Integer> nutrition ;
-    private HashMap<String,String> ingriUnits = new HashMap<>();
+
 
     public Recipe(String name, ArrayList<String> ingredients, String directions) {
         this.recipeName = name;
@@ -70,15 +70,7 @@ public class Recipe implements Serializable{
         return getRecipeName();
     }
 
-    public void addIngriWithUnit(String in, String unit)
-    {
-        ingriUnits.put(in,unit);
-    }
 
-    public void getUnitOfThisIngri(String s)
-    {
-        ingriUnits.get(s);
-    }
 
     @Override
     public boolean equals(Object obj) {

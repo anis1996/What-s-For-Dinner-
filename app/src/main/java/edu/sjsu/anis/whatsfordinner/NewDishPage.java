@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class NewDishPage extends AppCompatActivity {
 
 
     ArrayList<AutoCompleteTextView> texts ;
+    ArrayList<Spinner> spi;
 
     RecipeData data;
     ImageView userImage;
@@ -28,15 +30,27 @@ public class NewDishPage extends AppCompatActivity {
     String recName;
     Recipe recipe;
     boolean hasRecipe = false;
+    ArrayList<String> units;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_dish_page);
+        spi = new ArrayList<>();
+        units = new ArrayList<String>();
+        units.add("Pound");
+        units.add("Pieces");
+        units.add("Spoon");
+
+
 
         texts = new ArrayList<>();
 
         data = RecipeData.getSingleton();
+
+
 
         EditText editRecipe = (EditText) findViewById(R.id.recipeNameET) ;
         AutoCompleteTextView firstACTV = (AutoCompleteTextView) findViewById(R.id.ing1);
@@ -59,6 +73,30 @@ public class NewDishPage extends AppCompatActivity {
         texts.add(nineACTV);
         AutoCompleteTextView tenACTV = (AutoCompleteTextView) findViewById(R.id.ing10);
         texts.add(tenACTV);
+
+        ArrayAdapter<String> spinAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, units);
+
+        spi.add((Spinner) findViewById(R.id.ing1Spinner));
+        spi.add((Spinner) findViewById(R.id.ing2Spinner));
+        spi.add((Spinner) findViewById(R.id.ing3Spinner));
+        spi.add((Spinner) findViewById(R.id.ing4Spinner));
+        spi.add((Spinner) findViewById(R.id.ing5Spinner));
+        spi.add((Spinner) findViewById(R.id.ing6Spinner));
+        spi.add((Spinner) findViewById(R.id.ing7Spinner));
+        spi.add((Spinner) findViewById(R.id.ing8Spinner));
+        spi.add((Spinner) findViewById(R.id.ing9Spinner));
+        spi.add((Spinner) findViewById(R.id.ing10Spinner));
+
+
+        for(Spinner s : spi)
+        {
+            s.setAdapter(spinAdapter);
+            s.setSelection(0);
+        }
+
+
+
+
 
         EditText editDes = (EditText) findViewById(R.id.directionEdit);
         userImage = (ImageView) findViewById(R.id.imagePick);
@@ -85,7 +123,21 @@ public class NewDishPage extends AppCompatActivity {
             for(int i = 0;i < recipe.getIngredients().size(); i++)
             {
                 texts.get(i).setText(recipe.getIngredients().get(i));
+
             }
+
+
+            HashMap<String, Integer> exitNutrition = recipe.getNutrition();
+
+            ((EditText) findViewById(R.id.caloriesEditND)).setText(""+exitNutrition.get("Calories"));
+            ((EditText) findViewById(R.id.carbohydratesEditND)).setText(""+exitNutrition.get("Carbohydrates"));
+            ((EditText) findViewById(R.id.mineralsEditND)).setText(""+exitNutrition.get("Minerals"));
+            ((EditText) findViewById(R.id.vitaminsEditND)).setText(""+exitNutrition.get("Vitamins"));
+            ((EditText) findViewById(R.id.fatsEditND)).setText(""+exitNutrition.get("Fats"));
+            ((EditText) findViewById(R.id.sugarsEditND)).setText(""+exitNutrition.get("Sugars"));
+            ((EditText) findViewById(R.id.sodiumEditND)).setText(""+exitNutrition.get("Sodium"));
+            ((EditText) findViewById(R.id.proteinEditND)).setText(""+exitNutrition.get("Protein"));
+
 
         }
         for (AutoCompleteTextView actv : texts)
@@ -137,9 +189,10 @@ public class NewDishPage extends AppCompatActivity {
 
         String dir = ((EditText) findViewById(R.id.directionEdit)).getText().toString();
         recipe = new Recipe(recName,ingrid,dir);
-        for (AutoCompleteTextView actv : texts)
+        for (int i = 0 ; i < texts.size(); i++)
         {
-          //  recipe.addIngriWithUnit(actv.getText().toString(), );
+            RecipeData.getSingleton().addIngriWithUnit(texts.get(i).getText().toString(), spi.get(0).getSelectedItem().toString());
+
         }
 
 
