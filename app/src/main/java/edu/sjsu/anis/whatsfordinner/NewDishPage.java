@@ -42,7 +42,8 @@ public class NewDishPage extends AppCompatActivity {
         units = new ArrayList<String>();
         units.add("Pound");
         units.add("Pieces");
-        units.add("Spoon");
+        units.add("TableSpoon");
+        units.add("Cup");
 
 
 
@@ -207,6 +208,7 @@ public class NewDishPage extends AppCompatActivity {
 
 
         HashMap<String, Integer> nutrition = new HashMap<>();
+
 
         Integer caloriesInt = Integer.parseInt((((EditText) findViewById(R.id.caloriesEditND)).getText().toString()));
         nutrition.put("Calories",caloriesInt);
