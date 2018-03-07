@@ -47,11 +47,8 @@ public class ListFragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                                            int pos, long id) {
                 selectedRecipeName = (String) arg0.getItemAtPosition(pos);
-
                 selectedRecipe = data.getRecipeFromName(selectedRecipeName);
                 Intent i = new Intent(getActivity(), NewDishPage.class);
-
-
                 i.putExtra("information", selectedRecipe.getRecipeName());
                 startActivity(i);
                 return true;
@@ -63,7 +60,6 @@ public class ListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                selectedRecipeName = (String) adapterView.getItemAtPosition(i);
-
                selectedRecipe = data.getRecipeFromName(selectedRecipeName);
                update();
 

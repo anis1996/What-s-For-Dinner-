@@ -40,6 +40,7 @@ public class GroceriesPage extends AppCompatActivity {
 
 
         // got this sources code from this link https://github.com/baoyongzhang/SwipeMenuListView
+        //#########################################################################################//
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
@@ -79,7 +80,7 @@ public class GroceriesPage extends AppCompatActivity {
 // set creator
         listView.setMenuCreator(creator);
 
-
+        //#########################################################################################//
 
 
         listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
@@ -90,15 +91,12 @@ public class GroceriesPage extends AppCompatActivity {
                 switch (index) {
                     case 0:
                         // open
+                        //only use the name of ingridents
                         RecipeData.getSingleton().removeIngredients(item.substring(0,item.indexOf("-")));
 
                         adapter = new ArrayAdapter<String>(GroceriesPage.this, android.R.layout.simple_list_item_1, RecipeData.getSingleton().displayIngri());
                         listView.setAdapter(adapter);
 
-
-
-//                        Log.d(item.substring(0,item.indexOf("-")-1), "onMenuItemClick: ");
-//                        Log.d(RecipeData.getSingleton().displayIngri().get(0), "onMenuItemClick: ");
                         break;
                     case 1:
                         // delete
